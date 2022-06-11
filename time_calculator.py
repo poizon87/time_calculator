@@ -12,10 +12,11 @@ def add_time(start_time,added_time,weekday=None):
     day_count = 0
     zero = 0
     minutes = 0
-    hours = 0
     mil_start = 0
-
     total_mil_hours = 0
+
+    weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+
 
     calc_minutes = int(st_minute) + int(add_minute)
 
@@ -43,37 +44,25 @@ def add_time(start_time,added_time,weekday=None):
     else:
         of_day = 'PM'
 
-
-
-    #calc_hours = int(st_hour) + int(add_hour) # non military time
-    
-    #mil_count = calc_hours / 12
-
-    #if calc_hours + over_count <= 24:
-        #mil_hours = calc_hours + over_count + 12
-
     if 13 <= total_mil_hours <= 24:
-        hours = total_mil_hours - 12
+        total_mil_hours = total_mil_hours - 12
+
+    if total_mil_hours == 0:
+        total_mil_hours = 12
+
     
-    if hours == 0:
-        hours = 12
+    if day_count > 1:
+        days = f"{' ('}{day_count}{' days later'}{')'}"
+    elif day_count == 1:
+        days = 'next day'
 
-        #if of_day == 'PM':
-            #of_day = 'AM'
-        #elif of_day == 'AM':
-            #of_day = 'PM'
-    #else:
-        #hours = calc_hours + over_count
-
-    #print(mil_count)
-    #print(mil_hours)
-    print(f"{hours}:{minutes} {of_day}")
+    print(f"{total_mil_hours}:{minutes} {of_day}{','}{days}")
     #print(total_mil_hours)
+    #print(hours)
 
 
-
-    #print(st_hour,st_minute,add_hour,add_minute)
-    #print(f"{calc_hour}:{calc_minutes}") # working for low numbers
 #add_time("3:00 PM", "3:10")
 #add_time("11:43 AM", "0:20")
-add_time("10:10 PM", "3:30")
+#add_time("10:10 PM", "3:30")
+#add_time("11:43 PM", "24:20", "tueSday")
+add_time("6:30 PM", "205:12")
